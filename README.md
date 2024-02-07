@@ -41,9 +41,20 @@ docker push gcr.io/emotion-cloudrun/emotion
 gcloud run deploy emotion-ml-app --platform managed --region europe-west3 --image gcr.io/emotion-cloudrun/emotion --service-account yourservice-account --allow-unauthenticated
 ```
 
+# Example call
+```bash
+curl -X 'POST' \
+  'http://127.0.0.1:9612/emotions' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "texts": ["hello", "im not happy"]
+}'
+```
+
 # Models
 
-| Model | 
-| --- |
-| [minuva/MiniLMv2-goemotions-v2](https://huggingface.co/minuva/MiniLMv2-goemotions-v2)
-| [minuva/MiniLMv2-goemotions-v2-onnx](https://huggingface.co/minuva/MiniLMv2-goemotions-v2-onnx)
+| Model | Description |
+| --- | --- |
+| [minuva/MiniLMv2-goemotions-v2](https://huggingface.co/minuva/MiniLMv2-goemotions-v2) | A small and high quality emotion classification model |
+| [minuva/MiniLMv2-goemotions-v2-onnx](https://huggingface.co/minuva/MiniLMv2-goemotions-v2-onnx) | quantized ONNX model |
