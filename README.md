@@ -1,6 +1,6 @@
 # Intro
 
-A simple API server using FastAPI for serving a small and high quality emotion classification model onnxruntime only for CPU inference.
+A simple API server using FastAPI for serving a small and high quality emotion classification model onnxruntime only for CPU inference to Google Cloud Run.
 
 # Install from source
 ```bash
@@ -31,9 +31,19 @@ docker build --tag emotion .
 docker run -p 9612:9612 -it emotion
 ```
 
+# Deploy to cloun Run
+
+```bash
+gcloud projects create emotion-cloudrun
+gcloud config set project emotion-cloudrun
+docker build --tag gcr.io/emotion-cloudrun/emotion .
+docker push gcr.io/emotion-cloudrun/emotion
+gcloud run deploy emotion-ml-app --platform managed --region europe-west3 --image gcr.io/emotion-cloudrun/emotion --service-account yourservice-account --allow-unauthenticated
+```
+
 # Models
 
 | Model | 
 | --- |
-| [Ngit/MiniLM-L6-toxic-all-labels](https://huggingface.co/Ngit/MiniLMv2-L6-H384-goemotions-v2)
-| [Ngit/MiniLM-L6-toxic-all-labels-onnx](https://huggingface.co/Ngit/MiniLMv2-L6-H384-goemotions-v2-onnx)
+| [minuva/MiniLMv2-goemotions-v2](https://huggingface.co/minuva/MiniLMv2-goemotions-v2)
+| [minuva/MiniLMv2-goemotions-v2-onnx](https://huggingface.co/minuva/MiniLMv2-goemotions-v2-onnx)

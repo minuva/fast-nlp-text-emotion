@@ -17,7 +17,7 @@ class Request(BaseModel):
 
 
 # go emotion cfg
-emotion_model_name = "MiniLMv2-L6-H384-goemotions-v2-onnx"
+emotion_model_name = "MiniLMv2-goemotions-v2-onnx"
 tokenizer = Tokenizer.from_file(os.path.join(emotion_model_name, "tokenizer.json"))
 tokenizer.enable_padding()
 tokenizer.enable_truncation(max_length=256)

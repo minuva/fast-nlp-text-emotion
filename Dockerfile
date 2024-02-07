@@ -16,7 +16,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 
-RUN git clone https://huggingface.co/Ngit/MiniLMv2-L6-H384-goemotions-v2-onnx && rm -rf MiniLMv2-L6-H384-goemotions-v2-onnx/.git
+RUN git clone https://huggingface.co/minuva/MiniLMv2-goemotions-v2-onnx && rm -rf minuva/MiniLMv2-goemotions-v2-onnx/.git
 
 COPY . .
 
