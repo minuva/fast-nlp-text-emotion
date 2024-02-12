@@ -1,6 +1,6 @@
 # Fast emotion classification in text
 
-This open-source project delivers an efficient emotion classification system built on FastAPI. It uses a compact, yet highly accurate model powered by onnxruntime for rapid CPU-based processing. It is an ideal solution for applications requiring fast and reliable emotion classificstion without the need for GPU hardware. More details about the model in the [model page](https://huggingface.co/minuva/MiniLMv2-goemotions-v2).
+This open-source project delivers an efficient emotion classification system built on FastAPI 🚀. It uses a compact, yet highly accurate model running on onnxruntime for rapid CPU-based processing. It is an ideal solution for applications requiring fast and reliable emotion classification without the need for GPU hardware. More details about the model in the [model page](https://huggingface.co/minuva/MiniLMv2-goemotions-v2).
 
 
 # Install from source
