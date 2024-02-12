@@ -1,6 +1,6 @@
 # Intro
 
-A simple API server using FastAPI for serving a small and high quality emotion classification model with onnxruntime package for CPU inference on Google Cloud Run.
+A simple API server using FastAPI for serving a small and high quality emotion classification model with onnxruntime package for fast CPU inference.
 
 # Install from source
 ```bash
@@ -29,16 +29,6 @@ Run the following command to start the server (the root directory):
 ```bash
 docker build --tag emotion .
 docker run -p 9612:9612 -it emotion
-```
-
-# Deploy to cloun Run
-
-```bash
-gcloud projects create emotion-cloudrun
-gcloud config set project emotion-cloudrun
-docker build --tag gcr.io/emotion-cloudrun/emotion .
-docker push gcr.io/emotion-cloudrun/emotion
-gcloud run deploy emotion-ml-app --platform managed --region europe-west3 --image gcr.io/emotion-cloudrun/emotion --service-account yourservice-account --allow-unauthenticated
 ```
 
 # Example call
