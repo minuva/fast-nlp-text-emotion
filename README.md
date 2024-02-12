@@ -1,11 +1,12 @@
-# Intro
+# Fast emotion classification in text
 
-A simple API server using FastAPI for serving a small and high quality emotion classification model with onnxruntime package for fast CPU inference.
+This open-source project delivers an efficient emotion classification system built on FastAPI. It uses a compact, yet highly accurate model powered by onnxruntime for rapid CPU-based processing. It is an ideal solution for applications requiring fast and reliable emotion classificstion without the need for GPU hardware. More details about the model in the [model page](https://huggingface.co/minuva/MiniLMv2-goemotions-v2).
+
 
 # Install from source
 ```bash
-git clone https://github.com/minuva/emotion-prediction-serverless.git
-cd emotion-prediction-serverless
+git clone https://github.com/minuva/fast-nlp-text-emotion.git
+cd fast-nlp-text-emotion
 pip install -r requirements.txt
 ```
 
