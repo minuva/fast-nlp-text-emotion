@@ -35,13 +35,13 @@ docker run -p 9612:9612 -it emotion
 # Example call
 ```bash
 curl -X 'POST' \
-  'http://127.0.0.1:9612/emotions' \
+  'http://127.0.0.1:9612/conversation_emotions_plugin' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
-  "texts": ["hello", "im not happy"]
+  "llm_input": "I like you.",
+  "llm_output": "My apologies."
 }'
-```
 
 # Models
 

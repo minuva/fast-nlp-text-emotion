@@ -1,12 +1,13 @@
 import logging
 import os
-import numpy as np
 
 from typing import Dict, List, Union
 from fastapi import APIRouter
 from src.onnx_model import OnnxTransformer
 from tokenizers import Tokenizer
 from pydantic import BaseModel
+from rest_api.emotion import get_task_user_agent_emotion
+from rest_api.schema import TaskInput
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
@@ -29,18 +30,21 @@ emotion_model = OnnxTransformer(
 )
 
 
-@router.post("/emotions", response_model=List[Dict])
-def conversation_emotions(request: Request):
-    output = emotion_model.predict(tokenizer, request.texts, batch_size=16)
-    output = np.concatenate(output, axis=0)
-    scores = 1 / (1 + np.exp(-output))  # Sigmoid
-    results = []
-    for item in scores:
-        labels = []
-        scores = []
-        for idx, s in enumerate(item):
-            labels.append(emotion_model.config["id2label"][str(idx)])
-            scores.append(float(s))
-        results.append({"labels": labels, "scores": scores})
+emotion_model_name = "MiniLMv2-goemotions-v2-onnx"
+tokenizer = Tokenizer.from_pretrained("minuva/MiniLMv2-goemotions-v2-onnx")
+tokenizer.enable_truncation(max_length=256)
+emotion_model = OnnxTransformer(
+    emotion_model_name,
+)
 
-    return results
+tokenizer.enable_padding(
+    pad_token="<pad>",
+    pad_id=1,
+)
+
+
+@router.post("/conversation_emotions_plugin", response_model=Dict[str, str])
+async def task_emotions(request: TaskInput):
+    return get_task_user_agent_emotion(
+        request.llm_input, request.llm_output, emotion_model, tokenizer
+    )
