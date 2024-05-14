@@ -3,6 +3,9 @@
 This open-source project delivers an efficient emotion classification system built on FastAPI 🚀. It uses a compact, yet highly accurate model running on onnxruntime for rapid CPU-based processing. It is an ideal solution for applications requiring fast and reliable emotion classification without the need for GPU hardware. More details about the model in the [model page](https://huggingface.co/minuva/MiniLMv2-goemotions-v2).
 
 
+This project functions as the backend supporting the  [emotion plugin](https://github.com/minuva/ph-emotion-plugin) designed for use with [PostHog-LLM](https://github.com/postlang/posthog-llm).
+
+
 # Install from source
 ```bash
 git clone https://github.com/minuva/fast-nlp-text-emotion.git
@@ -35,11 +38,12 @@ docker run -p 9612:9612 -it emotion
 # Example call
 ```bash
 curl -X 'POST' \
-  'http://127.0.0.1:9612/emotions' \
+  'http://127.0.0.1:9612/conversation_emotions_plugin' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
-  "texts": ["hello", "im not happy"]
+  "llm_input": "I like you.",
+  "llm_output": "My apologies."
 }'
 ```
 
